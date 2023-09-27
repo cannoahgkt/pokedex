@@ -15,3 +15,17 @@ let pokemonList = [
         types: ["dark", "rock"]
     }
 ];
+
+for (let i =0; i < pokemonList.length; i++) {
+    let pokemon = pokemonList[i];
+    let pokemonName = pokemon.name;
+    let pokemonHeight = pokemon.height;
+// If the height is higher than 2, the message will appear, otherwise not
+    if (pokemonHeight > 2) {
+        document.write(pokemonName + " (height: " + pokemonHeight + ") -Wow, that's big!<br>");
+    }
+    else {
+        document.write(pokemonName + " (height: " + pokemonHeight + ")<br>");
+    }
+
+}
