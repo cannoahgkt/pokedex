@@ -21,7 +21,7 @@ let pokemonRepository = (function () {
 
     let button = document.createElement("button");
     button.innerText = pokemon.name;
-    button.classList.add("btn", "btn-primary");
+    button.classList.add("pokemon-button");
 
     listItem.appendChild(button);
     pokemonList.appendChild(listItem);
@@ -35,13 +35,41 @@ let pokemonRepository = (function () {
   // Function to show Pokémon details
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function (data) {
-      // Populate the Bootstrap modal with Pokémon details
-      $('#modalLabel').text('Name: ' + data.name);
-      $('#pokemonHeight').text('Height: ' + data.height);
-      $('#pokemonImage').attr('src', data.imageUrl);
-
+      // Select the modal elements by class name
+      let modalBody = document.querySelector('.modal-body');
+      let modalTitle = document.querySelector('.modal-title');
+  
+      // Clear existing modal content
+      modalTitle.innerHTML = '';
+      modalBody.innerHTML = '';
+  
+      // Create elements for the modal content
+      let titleElement = document.createElement('h2');
+      titleElement.innerText = 'Name: ' + data.name;
+  
+      let imageElement = document.createElement('img');
+      imageElement.classList.add('modal-img');
+      imageElement.setAttribute('src', data.imageUrl);
+      imageElement.classList.add('float-right');
+  
+      let heightElement = document.createElement('p');
+      heightElement.innerText = 'Height: ' + data.height;
+  
+      let typeElement = document.createElement('p');
+      typeElement.innerText = 'Type: ' + (data.types.length === 2 ? data.types[0].type.name + ', ' + data.types[1].type.name : data.types[0].type.name);
+  
+      // Append elements to the modal content
+      modalTitle.appendChild(titleElement);
+      modalBody.appendChild(imageElement);
+      modalBody.appendChild(heightElement);
+      modalBody.appendChild(typeElement);
+  
       // Show the Bootstrap modal
       $('#modal').modal('show');
+      // Hide the Bootstrap modal
+      document.getElementById('closeModalButton').addEventListener('click', function() {
+        $('#modal').modal('hide');
+      });
     });
   }
 
@@ -86,7 +114,7 @@ let pokemonRepository = (function () {
   };
 })();
 
-// Load the list of Pokémon and add list items with details
+// Loads the list of Pokémon and adds list items with details
 pokemonRepository.loadList().then(function () {
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
