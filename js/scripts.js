@@ -1,7 +1,7 @@
-let pokemonRepository = (function () {
+let pokemonRepository = (function() {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-  let modal = document.getElementById("pokemonModal"); // Declare modal here
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=386';
+  let modal = document.getElementById("pokemonModal");
 
   function getAll() {
     return pokemonList;
@@ -45,7 +45,7 @@ let pokemonRepository = (function () {
   
       // Create elements for the modal content
       let titleElement = document.createElement('h2');
-      titleElement.innerText = 'Name: ' + data.name;
+      titleElement.innerText = data.name;
   
       let imageElement = document.createElement('img');
       imageElement.classList.add('modal-img');
@@ -120,3 +120,26 @@ pokemonRepository.loadList().then(function () {
     pokemonRepository.addListItem(pokemon);
   });
 });
+
+// Define a function to handle the search
+function searchFunction() {
+  let input, filter, ul, li, button, i, txtValue;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("pokemon-list");
+  li = ul.getElementsByClassName("list-group-item");
+
+  for (i = 0; i < li.length; i++) {
+    button = li[i].getElementsByClassName("pokemon-button")[0];
+    txtValue = button.textContent || button.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+
+// Event listener for the search input field
+document.getElementById("searchInput").addEventListener("keyup", searchFunction);
+

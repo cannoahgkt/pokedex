@@ -1,6 +1,6 @@
 body {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    background-color: #FBFBFB;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #E4EEDB;
     line-height: 1.5;
     font-size: 20px;
     margin-left: 40px;
@@ -8,12 +8,27 @@ body {
 }
 
 h1 {
-    font-size: 40px;
-    margin-bottom: 40px;
+  font-size: 60px;
+  margin-bottom: 40px;
+  color: #FFCC01;
+  text-transform: uppercase;
+  text-shadow: -2px 0 #3264AF, 0 2px #3264AF, 2px 0 #3264AF, 0 -2px #3264AF;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-size: 32px;
+  color: #F5524A;
 }
 
 .navbar {
-  background-color: #F5524A
+  background-color: #F5524A;
+}
+
+
+.navbar-brand img {
+  width: 50px;
+  height: auto;
 }
 
 .container {
@@ -24,6 +39,8 @@ h1 {
     text-align: center;
     width: 80%;
     margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 
@@ -35,7 +52,7 @@ h1 {
 .list-group-item {
   cursor: pointer;
   border: none;
-  background-color: #FBFBFB;
+  background-color: #E4EEDB;
 }
 
 .pokemon-button {
@@ -78,6 +95,7 @@ h1 {
   border-color: #F5524A;
   color: #F5524A;
   fill: #F5524A;
+  transition: ease-in-out;
 }
 
 .pokemon-button:active {
